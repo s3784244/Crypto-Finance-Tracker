@@ -32,7 +32,7 @@
 
 .coin_h1 {
   font-size: 16px;
-  width: 30px;
+  width: 150px;
 } 
 
 .coin_symbol {
@@ -46,3 +46,26 @@
   width: 100%;
 }
 
+.coin_price {
+  width: 110px;
+}
+ 
+.coin_volume {
+  width :155px
+}
+
+.coin_marketcap {
+  width: 230px;
+}
+
+.coin_percent {
+  width: 100px;
+}
+
+.red {
+  color: #f00606;
+}
+
+.green {
+  color: #13c783
+}
