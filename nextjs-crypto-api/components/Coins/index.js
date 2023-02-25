@@ -12,7 +12,7 @@ const Coins = ({
   id 
 }) => {
   return (
-    <Link href='/coin/[id]' as={'/coin/${id}'}>
+    <Link href='/coin/[id]' as={`/coin/${id}`}>
       <a>
         <div className={styles.coin_container}>
           <div className={styles.coin_row}>
@@ -27,15 +27,15 @@ const Coins = ({
                 <p className={styles.coin_volume}>
                   ${volume.toLocaleString()}</p>
 
-                  {/* {priceChange < 0 ? (
-                    <p className={styles.coin_percent, styles.red}>
+                  {priceChange < 0 ? (
+                    <p className={(styles.coin_percent, styles.red)}>
                       {priceChange.toFixed(2)}%
                     </p>
                   ) : (
-                    <p className={styles.coin_percent, styles.green}>
+                    <p className={(styles.coin_percent, styles.green)}>
                       {priceChange.toFixed(2)}%
                     </p>
-                  )} */}
+                  )}
 
                   <p className={styles.coin_marketcap}>
                     Mkt Cap: ${marketcap.toLocaleString()}
