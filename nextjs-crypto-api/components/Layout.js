@@ -1,18 +1,17 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from 'next/head';
+import Link from 'next/link';
 
-const Layout = ({children, title ="Crypto Tracker"}) => {
+const Layout = ({ children, title = 'Crypto Tracker' }) => {
   return (
-    <div className="layout">
+    <div className='layout'>
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
-
       <header className='header'>
-        <Link href="/" passHred>
+        <Link href='/' passHref>
           <a>
-          <svg
+            <svg
               width='675'
               height='375'
               viewBox='0 0 675 375'
@@ -69,7 +68,7 @@ const Layout = ({children, title ="Crypto Tracker"}) => {
       </header>
       <main>{children}</main>
     </div>
-  )
+  );
 };
 
 export default Layout;

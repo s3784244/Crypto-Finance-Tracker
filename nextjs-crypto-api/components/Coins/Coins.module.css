@@ -27,13 +27,13 @@
 .coin_img {
   height: 30px;
   width: 30px;
-  margin-right:10px
+  margin-right: 10px;
 }
 
 .coin_h1 {
   font-size: 16px;
   width: 150px;
-} 
+}
 
 .coin_symbol {
   text-transform: uppercase;
@@ -49,9 +49,9 @@
 .coin_price {
   width: 110px;
 }
- 
+
 .coin_volume {
-  width :155px
+  width: 155px;
 }
 
 .coin_marketcap {
@@ -60,7 +60,6 @@
 
 .coin_percent {
   width: 100px;
-  /* margin-left: 20px; */
 }
 
 .red {
@@ -68,5 +67,5 @@
 }
 
 .green {
-  color: #13c783
+  color: #13c783;
 }
