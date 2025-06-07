@@ -14,8 +14,19 @@
     outline: none;
     height: 100%;
     width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:global(.light) .coin_input {
+    background: #f0f0f0;
+    color: #333333;
+    border: 1px solid #ddd;
 }
 
 .coin_input::placeholder {
     color: #e2e2e2;
+}
+
+:global(.light) .coin_input::placeholder {
+    color: #888888;
 }

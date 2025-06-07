@@ -11,6 +11,22 @@ const Coins = ({
   priceChange,
   id
 }) => {
+  // Helper function to safely format numbers
+  const formatNumber = (num) => {
+    if (num === null || num === undefined || isNaN(num)) {
+      return 'N/A';
+    }
+    return num.toLocaleString();
+  };
+
+  // Helper function to safely format percentage
+  const formatPercentage = (percent) => {
+    if (percent === null || percent === undefined || isNaN(percent)) {
+      return 'N/A';
+    }
+    return percent.toFixed(2) + '%';
+  };
+
   return (
     <Link href='/coin/[id]' as={`/coin/${id}`}>
       <a>
@@ -22,21 +38,25 @@ const Coins = ({
               <p className={styles.coin_symbol}>{symbol}</p>
             </div>
             <div className={styles.coin_data}>
-              <p className={styles.coin_price}>${price}</p>
-              <p className={styles.coin_volume}>${volume.toLocaleString()}</p>
+              <p className={styles.coin_price}>
+                ${price ? price.toLocaleString() : 'N/A'}
+              </p>
+              <p className={styles.coin_volume}>
+                ${formatNumber(volume)}
+              </p>
 
               {priceChange < 0 ? (
-                <p className={(styles.coin_percent, styles.red)}>
-                  {priceChange.toFixed(2)}%
+                <p className={`${styles.coin_percent} ${styles.red}`}>
+                  {formatPercentage(priceChange)}
                 </p>
               ) : (
-                <p className={(styles.coin_percent, styles.green)}>
-                  {priceChange.toFixed(2)}%
+                <p className={`${styles.coin_percent} ${styles.green}`}>
+                  {formatPercentage(priceChange)}
                 </p>
               )}
 
               <p className={styles.coin_marketcap}>
-                Mkt Cap: ${marketcap.toLocaleString()}
+                Mkt Cap: ${formatNumber(marketcap)}
               </p>
             </div>
           </div>

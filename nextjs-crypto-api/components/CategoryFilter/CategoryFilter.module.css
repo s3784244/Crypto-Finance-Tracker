@@ -1,0 +1,50 @@
+.category_filter {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category_label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e2e2e2;
+}
+
+:global(.light) .category_label {
+  color: #333333;
+}
+
+.category_select {
+  background: #222531;
+  color: #e2e2e2;
+  border: 1px solid #2fffe5;
+  padding: 12px 16px;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-width: 200px;
+}
+
+:global(.light) .category_select {
+  background: #f0f0f0;
+  color: #333333;
+  border: 1px solid #ddd;
+}
+
+.category_select:hover {
+  border-color: #00FFFF;
+}
+
+.category_select option {
+  background: #222531;
+  color: #e2e2e2;
+}
+
+:global(.light) .category_select option {
+  background: #ffffff;
+  color: #333333;
+}
