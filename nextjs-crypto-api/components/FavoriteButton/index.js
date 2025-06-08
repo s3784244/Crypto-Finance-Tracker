@@ -1,8 +1,5 @@
-import { createContext, useContext, useState, useEffect } from 'react';
 import { useFavorites } from '../../context/FavoritesContext';
 import styles from './FavoriteButton.module.css';
-
-
 
 const FavoriteButton = ({ coin }) => {
   const { isFavorite, toggleFavorite } = useFavorites();

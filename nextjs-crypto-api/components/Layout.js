@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useTheme } from '../context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import WatchlistButton from './WatchlistButton';
+import Footer from './Footer';
 import { useEffect } from 'react';
 
 const Layout = ({ children, title = 'Crypto Tracker' }) => {
@@ -86,6 +87,7 @@ const Layout = ({ children, title = 'Crypto Tracker' }) => {
         </div>
       </header>
       <main>{children}</main>
+      <Footer />
     </div>
   );
 };
