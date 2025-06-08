@@ -1,0 +1,210 @@
+.watchlist_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.watchlist_title {
+  font-size: 2.5rem;
+  color: #2fffe5;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+:global(.light) .watchlist_title {
+  color: #00bcd4;
+}
+
+.empty_state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #e2e2e2;
+  max-width: 500px;
+}
+
+.empty_state p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.empty_state p:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2fffe5;
+}
+
+:global(.light) .empty_state {
+  color: #333;
+}
+
+:global(.light) .empty_state p:first-child {
+  color: #00bcd4;
+}
+
+.watchlist_info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  color: #e2e2e2;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+:global(.light) .watchlist_info {
+  color: #333;
+}
+
+.watchlist_info p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.refresh_btn {
+  background: linear-gradient(90deg, #06F0FF 0%, #00FFFF 100%);
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.refresh_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 240, 255, 0.4);
+}
+
+.refresh_btn:active {
+  transform: translateY(0);
+}
+
+.refresh_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error_message {
+  color: #ef4444;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.loading {
+  text-align: center;
+  margin: 2rem 0;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+:global(.light) .loading {
+  color: #666;
+}
+
+.coins_container {
+  width: 100%;
+}
+
+/* Mobile Styles */
+@media (max-width: 479px) {
+  .watchlist_page {
+    padding: 0 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .watchlist_title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .watchlist_info {
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .watchlist_info p {
+    font-size: 0.875rem;
+  }
+  
+  .refresh_btn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .empty_state {
+    padding: 2rem 1rem;
+  }
+  
+  .empty_state p {
+    font-size: 1rem;
+  }
+  
+  .empty_state p:first-child {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .watchlist_page {
+    padding: 0 0.75rem;
+    margin-top: 1.5rem;
+  }
+  
+  .watchlist_title {
+    font-size: 2rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .watchlist_info {
+    gap: 1.5rem;
+  }
+  
+  .watchlist_info p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .watchlist_title {
+    font-size: 2.2rem;
+  }
+  
+  .refresh_btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .watchlist_page {
+    margin-top: 2.5rem;
+  }
+  
+  .watchlist_title {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .refresh_btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}

@@ -1,64 +1,31 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { useFavorites } from '../../context/FavoritesContext';
+import styles from './FavoriteButton.module.css';
 
-const FavoritesContext = createContext();
 
-export const useFavorites = () => {
-  const context = useContext(FavoritesContext);
-  if (!context) {
-    throw new Error('useFavorites must be used within a FavoritesProvider');
-  }
-  return context;
-};
 
-export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([]);
+const FavoriteButton = ({ coin }) => {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isCurrentlyFavorite = isFavorite(coin.id);
 
-  useEffect(() => {
-    // Load favorites from localStorage on mount
-    const savedFavorites = localStorage.getItem('cryptoFavorites');
-    if (savedFavorites) {
-      try {
-        setFavorites(JSON.parse(savedFavorites));
-      } catch (error) {
-        console.error('Error parsing saved favorites:', error);
-        setFavorites([]);
-      }
-    }
-  }, []);
-
-  const addToFavorites = (coin) => {
-    const newFavorites = [...favorites, coin];
-    setFavorites(newFavorites);
-    localStorage.setItem('cryptoFavorites', JSON.stringify(newFavorites));
-  };
-
-  const removeFromFavorites = (coinId) => {
-    const newFavorites = favorites.filter(coin => coin.id !== coinId);
-    setFavorites(newFavorites);
-    localStorage.setItem('cryptoFavorites', JSON.stringify(newFavorites));
-  };
-
-  const isFavorite = (coinId) => {
-    return favorites.some(coin => coin.id === coinId);
-  };
-
-  const toggleFavorite = (coin) => {
-    if (isFavorite(coin.id)) {
-      removeFromFavorites(coin.id);
-    } else {
-      addToFavorites(coin);
-    }
+  const handleClick = (e) => {
+    e.preventDefault(); // Prevent navigation when clicking the heart
+    e.stopPropagation(); // Stop event bubbling
+    toggleFavorite(coin);
   };
 
   return (
-    <FavoritesContext.Provider value={{
-      favorites,
-      addToFavorites,
-      removeFromFavorites,
-      isFavorite,
-      toggleFavorite
-    }}>
-      {children}
-    </FavoritesContext.Provider>
+    <button
+      onClick={handleClick}
+      className={`${styles.favorite_btn} ${isCurrentlyFavorite ? styles.favorite : styles.not_favorite}`}
+      aria-label={isCurrentlyFavorite ? "Remove from favorites" : "Add to favorites"}
+      title={isCurrentlyFavorite ? "Remove from favorites" : "Add to favorites"}
+    >
+      <span className={styles.heart_icon}>
+        {isCurrentlyFavorite ? '❤️' : '🤍'}
+      </span>
+    </button>
   );
 };
+
+export default FavoriteButton;
