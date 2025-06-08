@@ -1,7 +1,17 @@
-/* filepath: /Users/kajalsoni/Documents/Personal Project/Crypto-Finance-Tracker/nextjs-crypto-api/components/Coins/index.js */
+/**
+ * Coins Component - Displays individual cryptocurrency data in a table row
+ * 
+ * Features:
+ * - Responsive grid layout
+ * - Favorite button integration
+ * - Formatted price and percentage display
+ * - Click navigation to coin details
+ */
+
 import styles from './Coins.module.css';
 import Link from 'next/link';
 import FavoriteButton from '../FavoriteButton';
+import { formatNumber, formatPercentage, formatPrice } from '../../utils/formatters';
 
 const Coins = ({
   name,
@@ -13,31 +23,7 @@ const Coins = ({
   priceChange,
   id
 }) => {
-  // Helper function to safely format numbers
-  const formatNumber = (num) => {
-    if (num === null || num === undefined || isNaN(num)) {
-      return 'N/A';
-    }
-    return num.toLocaleString();
-  };
-
-  // Helper function to safely format percentage
-  const formatPercentage = (percent) => {
-    if (percent === null || percent === undefined || isNaN(percent)) {
-      return 'N/A';
-    }
-    return percent.toFixed(2) + '%';
-  };
-
-  // Helper function to format price
-  const formatPrice = (price) => {
-    if (price === null || price === undefined || isNaN(price)) {
-      return 'N/A';
-    }
-    return `$${price.toLocaleString()}`;
-  };
-
-  // Create coin object for favorites
+  // Create coin object for favorites functionality
   const coinData = {
     id,
     name,
@@ -52,9 +38,16 @@ const Coins = ({
   return (
     <div className={styles.coin_container}>
       <div className={styles.coin_row}>
-        {/* Coin Info with Favorite Button */}
+        {/* Coin Information with Favorite Button */}
         <div className={styles.coin}>
-          <img src={image} alt={name} className={styles.coin_img} />
+          <img 
+            src={image} 
+            alt={`${name} logo`} 
+            className={styles.coin_img}
+            onError={(e) => {
+              e.target.src = '/fallback-coin-icon.png'; // Add fallback image
+            }}
+          />
           <div className={styles.coin_info}>
             <h1 className={styles.coin_h1}>{name}</h1>
             <p className={styles.coin_symbol}>{symbol}</p>
@@ -65,8 +58,8 @@ const Coins = ({
         </div>
         
         {/* Price */}
-        <Link href='/coin/[id]' as={`/coin/${id}`}>
-          <a className={styles.coin_link}>
+        <Link href={`/coin/${id}`}>
+          <a className={styles.coin_link} aria-label={`View ${name} details`}>
             <div className={styles.coin_price}>
               {formatPrice(price)}
             </div>
@@ -74,17 +67,17 @@ const Coins = ({
         </Link>
         
         {/* Volume */}
-        <Link href='/coin/[id]' as={`/coin/${id}`}>
-          <a className={styles.coin_link}>
+        <Link href={`/coin/${id}`}>
+          <a className={styles.coin_link} aria-label={`View ${name} volume details`}>
             <div className={styles.coin_volume}>
               ${formatNumber(volume)}
             </div>
           </a>
         </Link>
         
-        {/* 24h Change */}
-        <Link href='/coin/[id]' as={`/coin/${id}`}>
-          <a className={styles.coin_link}>
+        {/* 24h Price Change */}
+        <Link href={`/coin/${id}`}>
+          <a className={styles.coin_link} aria-label={`View ${name} price change`}>
             <div className={`${styles.coin_percent} ${priceChange < 0 ? styles.red : styles.green}`}>
               {formatPercentage(priceChange)}
             </div>
@@ -92,8 +85,8 @@ const Coins = ({
         </Link>
         
         {/* Market Cap */}
-        <Link href='/coin/[id]' as={`/coin/${id}`}>
-          <a className={styles.coin_link}>
+        <Link href={`/coin/${id}`}>
+          <a className={styles.coin_link} aria-label={`View ${name} market cap details`}>
             <div className={styles.coin_marketcap}>
               ${formatNumber(marketcap)}
             </div>

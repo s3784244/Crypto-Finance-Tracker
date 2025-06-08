@@ -1,21 +1,26 @@
+/**
+ * CategoryFilter Component - Provides sorting options for cryptocurrency list
+ * 
+ * Features:
+ * - Multiple sorting categories
+ * - Responsive design
+ * - Accessible form controls
+ */
+
 import { useState } from 'react';
 import styles from './CategoryFilter.module.css';
+import { SORT_CATEGORIES } from '../../utils/constants';
 
 const CategoryFilter = ({ onCategoryChange }) => {
   const [selectedCategory, setSelectedCategory] = useState('market_cap_desc');
 
-  const categories = [
-    { value: 'market_cap_desc', label: 'Market Cap (High to Low)' },
-    { value: 'market_cap_asc', label: 'Market Cap (Low to High)' },
-    { value: 'volume_desc', label: 'Volume (High to Low)' },
-    { value: 'price_change_percentage_24h_desc', label: '🚀 Top Gainers (24h)' },
-    { value: 'price_change_percentage_24h_asc', label: '📉 Top Losers (24h)' }
-  ];
-
   const handleChange = (e) => {
     const newCategory = e.target.value;
     setSelectedCategory(newCategory);
-    onCategoryChange(newCategory);
+    
+    if (onCategoryChange) {
+      onCategoryChange(newCategory);
+    }
   };
 
   return (
@@ -28,8 +33,9 @@ const CategoryFilter = ({ onCategoryChange }) => {
         value={selectedCategory} 
         onChange={handleChange}
         className={styles.category_select}
+        aria-label="Sort cryptocurrencies by category"
       >
-        {categories.map(category => (
+        {SORT_CATEGORIES.map(category => (
           <option key={category.value} value={category.value}>
             {category.label}
           </option>
