@@ -25,6 +25,12 @@ export const ThemeProvider = ({ children }) => {
     const newTheme = !isDark;
     setIsDark(newTheme);
     localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    
+    // Immediately update DOM elements
+    const themeClass = newTheme ? 'dark' : 'light';
+    document.documentElement.className = themeClass;
+    document.body.className = themeClass;
+    document.body.style.backgroundColor = newTheme ? '#101012' : '#ffffff';
   };
 
   return (

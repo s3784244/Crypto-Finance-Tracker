@@ -1,93 +1,267 @@
 .coin_container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .coin_row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 80px 120px;
+  gap: 1rem;
   align-items: center;
   height: 80px;
   border-bottom: 1px solid #2e2e2e;
-  width: 1000px;
-  padding: 0rem 2rem;
-  transition: background-color 0.3s ease;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  min-width: 500px;
 }
 
 .coin_row:hover {
-  background: #171718;
+  background: rgba(47, 255, 229, 0.05);
+  backdrop-filter: blur(10px);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(47, 255, 229, 0.1);
 }
 
 :global(.light) .coin_row {
   border-bottom: 1px solid #e0e0e0;
-  color: #333333;
 }
 
 :global(.light) .coin_row:hover {
-  background: #f5f5f5;
+  background: rgba(0, 188, 212, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.1);
 }
 
 .coin {
   display: flex;
   align-items: center;
-  padding-right: 24px;
-  width: 200px; /* Match header width */
+  min-width: 0; /* Allows text to truncate */
+  gap: 0.75rem;
 }
 
 .coin_img {
-  height: 30px;
-  width: 30px;
-  margin-right: 10px;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.coin_info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
 }
 
 .coin_h1 {
-  font-size: 16px;
-  width: 120px; /* Adjusted for better fit */
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
 .coin_symbol {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #888;
-  margin-left: 5px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1;
 }
 
 :global(.light) .coin_symbol {
   color: #666;
 }
 
-.coin_data {
-  display: flex;
-  text-align: right;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .coin_price {
-  width: 110px;
+  text-align: right;
   font-weight: 600;
+  font-size: 0.875rem;
+  color: inherit;
 }
 
 .coin_volume {
-  width: 155px;
-  font-size: 14px;
-}
-
-.coin_marketcap {
-  width: 230px;
-  font-size: 14px;
+  text-align: right;
+  font-size: 0.875rem;
+  color: inherit;
 }
 
 .coin_percent {
-  width: 100px;
+  text-align: right;
   font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.coin_marketcap {
+  text-align: right;
+  font-size: 0.75rem;
+  color: inherit;
 }
 
 .red {
-  color: #f00606;
+  color: #ef4444;
 }
 
 .green {
-  color: #13c783;
+  color: #22c55e;
+}
+
+/* Small Mobile (max-width: 479px) */
+@media (max-width: 479px) {
+  .coin_row {
+    grid-template-columns: 1fr 60px 60px 60px 80px;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    min-height: 60px;
+    min-width: 400px;
+  }
+  
+  .coin {
+    gap: 0.5rem;
+  }
+  
+  .coin_img {
+    height: 24px;
+    width: 24px;
+  }
+  
+  .coin_h1 {
+    font-size: 0.75rem;
+  }
+  
+  .coin_symbol {
+    font-size: 0.625rem;
+  }
+  
+  .coin_price,
+  .coin_volume,
+  .coin_percent {
+    font-size: 0.75rem;
+  }
+  
+  .coin_marketcap {
+    font-size: 0.625rem;
+  }
+}
+
+/* Medium Mobile (480px - 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+  .coin_row {
+    grid-template-columns: 1fr 70px 70px 70px 100px;
+    gap: 0.75rem;
+    padding: 0.625rem;
+    min-height: 65px;
+    min-width: 450px;
+  }
+  
+  .coin {
+    gap: 0.625rem;
+  }
+  
+  .coin_img {
+    height: 28px;
+    width: 28px;
+  }
+  
+  .coin_h1 {
+    font-size: 0.875rem;
+  }
+  
+  .coin_symbol {
+    font-size: 0.7rem;
+  }
+}
+
+/* Large Mobile (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .coin_row {
+    grid-template-columns: 1fr 80px 90px 80px 110px;
+    gap: 1rem;
+    min-height: 70px;
+    min-width: 550px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .coin_row {
+    grid-template-columns: 1fr 100px 120px 100px 140px;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    min-height: 80px;
+    min-width: 650px;
+  }
+  
+  .coin_img {
+    height: 36px;
+    width: 36px;
+  }
+  
+  .coin_h1 {
+    font-size: 1.125rem;
+  }
+  
+  .coin_symbol {
+    font-size: 0.875rem;
+  }
+  
+  .coin_price,
+  .coin_volume,
+  .coin_percent {
+    font-size: 1rem;
+  }
+  
+  .coin_marketcap {
+    font-size: 0.875rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .coin_container {
+    overflow-x: visible;
+  }
+  
+  .coin_row {
+    grid-template-columns: 1fr 120px 150px 120px 180px;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    min-height: 90px;
+    min-width: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .coin_img {
+    height: 40px;
+    width: 40px;
+  }
+  
+  .coin_h1 {
+    font-size: 1.25rem;
+  }
+  
+  .coin_symbol {
+    font-size: 1rem;
+  }
+  
+  .coin_price,
+  .coin_volume,
+  .coin_percent {
+    font-size: 1.125rem;
+  }
+  
+  .coin_marketcap {
+    font-size: 1rem;
+  }
 }

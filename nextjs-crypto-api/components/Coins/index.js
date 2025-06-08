@@ -1,3 +1,4 @@
+/* filepath: /Users/kajalsoni/Documents/Personal Project/Crypto-Finance-Tracker/nextjs-crypto-api/components/Coins/index.js */
 import styles from './Coins.module.css';
 import Link from 'next/link';
 
@@ -27,37 +28,46 @@ const Coins = ({
     return percent.toFixed(2) + '%';
   };
 
+  // Helper function to format price
+  const formatPrice = (price) => {
+    if (price === null || price === undefined || isNaN(price)) {
+      return 'N/A';
+    }
+    return `$${price.toLocaleString()}`;
+  };
+
   return (
     <Link href='/coin/[id]' as={`/coin/${id}`}>
       <a>
         <div className={styles.coin_container}>
           <div className={styles.coin_row}>
+            {/* Coin Info */}
             <div className={styles.coin}>
               <img src={image} alt={name} className={styles.coin_img} />
-              <h1 className={styles.coin_h1}>{name}</h1>
-              <p className={styles.coin_symbol}>{symbol}</p>
+              <div className={styles.coin_info}>
+                <h1 className={styles.coin_h1}>{name}</h1>
+                <p className={styles.coin_symbol}>{symbol}</p>
+              </div>
             </div>
-            <div className={styles.coin_data}>
-              <p className={styles.coin_price}>
-                ${price ? price.toLocaleString() : 'N/A'}
-              </p>
-              <p className={styles.coin_volume}>
-                ${formatNumber(volume)}
-              </p>
-
-              {priceChange < 0 ? (
-                <p className={`${styles.coin_percent} ${styles.red}`}>
-                  {formatPercentage(priceChange)}
-                </p>
-              ) : (
-                <p className={`${styles.coin_percent} ${styles.green}`}>
-                  {formatPercentage(priceChange)}
-                </p>
-              )}
-
-              <p className={styles.coin_marketcap}>
-                Mkt Cap: ${formatNumber(marketcap)}
-              </p>
+            
+            {/* Price */}
+            <div className={styles.coin_price}>
+              {formatPrice(price)}
+            </div>
+            
+            {/* Volume */}
+            <div className={styles.coin_volume}>
+              ${formatNumber(volume)}
+            </div>
+            
+            {/* 24h Change */}
+            <div className={`${styles.coin_percent} ${priceChange < 0 ? styles.red : styles.green}`}>
+              {formatPercentage(priceChange)}
+            </div>
+            
+            {/* Market Cap */}
+            <div className={styles.coin_marketcap}>
+              ${formatNumber(marketcap)}
             </div>
           </div>
         </div>

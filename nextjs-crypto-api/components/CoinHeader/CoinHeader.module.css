@@ -1,19 +1,24 @@
 .coin_header_container {
   display: flex;
   justify-content: center;
+  width: 100%;
+  overflow-x: auto;
   margin-bottom: 1rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .coin_header_row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 80px 120px;
+  gap: 1rem;
   align-items: center;
-  height: 50px;
+  min-height: 50px;
   border-bottom: 2px solid #2fffe5;
-  width: 1000px;
-  padding: 0rem 2rem;
+  padding: 0.75rem 1rem;
   background: rgba(47, 255, 229, 0.1);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  min-width: 500px;
 }
 
 :global(.light) .coin_header_row {
@@ -24,15 +29,17 @@
 .coin_header_left {
   display: flex;
   align-items: center;
-  padding-right: 24px;
-  width: 200px;
+  min-width: 0; /* Allows text to truncate */
 }
 
 .coin_header_name {
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
   color: #2fffe5;
-  margin-left: 40px;
+  margin-left: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 :global(.light) .coin_header_name {
@@ -40,44 +47,143 @@
 }
 
 .coin_header_data {
-  display: flex;
-  text-align: right;
-  justify-content: space-between;
-  width: 100%;
-  font-weight: bold;
-  color: #2fffe5;
+  display: contents; /* Makes grid items behave as direct children */
 }
 
-:global(.light) .coin_header_data {
-  color: #00bcd4;
-}
-
-.coin_header_price {
-  width: 110px;
-}
-
-.coin_header_volume {
-  width: 155px;
-}
-
+.coin_header_price,
+.coin_header_volume,
+.coin_header_percent,
 .coin_header_marketcap {
-  width: 230px;
+  font-weight: 600;
+  color: #2fffe5;
+  text-align: right;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.coin_header_percent {
-  width: 100px;
+:global(.light) .coin_header_price,
+:global(.light) .coin_header_volume,
+:global(.light) .coin_header_percent,
+:global(.light) .coin_header_marketcap {
+  color: #00bcd4;
 }
 
 .sortable {
   cursor: pointer;
   user-select: none;
+  transition: color 0.3s ease;
+  padding: 0.25rem;
+  border-radius: 4px;
 }
 
 .sortable:hover {
   color: #00FFFF;
-  text-decoration: underline;
+  background: rgba(0, 255, 255, 0.1);
 }
 
 :global(.light) .sortable:hover {
   color: #0097a7;
+  background: rgba(0, 151, 167, 0.1);
+}
+
+/* Small Mobile (max-width: 479px) */
+@media (max-width: 479px) {
+  .coin_header_row {
+    grid-template-columns: 1fr 60px 60px 60px 80px;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    min-width: 400px;
+  }
+  
+  .coin_header_name {
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+  }
+  
+  .coin_header_price,
+  .coin_header_volume,
+  .coin_header_percent,
+  .coin_header_marketcap {
+    font-size: 0.75rem;
+  }
+}
+
+/* Medium Mobile (480px - 639px) */
+@media (min-width: 480px) and (max-width: 639px) {
+  .coin_header_row {
+    grid-template-columns: 1fr 70px 70px 70px 100px;
+    gap: 0.75rem;
+    padding: 0.625rem;
+    min-width: 450px;
+  }
+  
+  .coin_header_name {
+    font-size: 0.875rem;
+    margin-left: 0.75rem;
+  }
+}
+
+/* Large Mobile (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .coin_header_row {
+    grid-template-columns: 1fr 80px 90px 80px 110px;
+    gap: 1rem;
+    min-width: 550px;
+  }
+  
+  .coin_header_name {
+    margin-left: 1rem;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .coin_header_row {
+    grid-template-columns: 1fr 100px 120px 100px 140px;
+    gap: 1.25rem;
+    padding: 1rem 1.5rem;
+    min-width: 650px;
+  }
+  
+  .coin_header_name {
+    font-size: 1.125rem;
+    margin-left: 1.5rem;
+  }
+  
+  .coin_header_price,
+  .coin_header_volume,
+  .coin_header_percent,
+  .coin_header_marketcap {
+    font-size: 1rem;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .coin_header_container {
+    overflow-x: visible;
+  }
+  
+  .coin_header_row {
+    grid-template-columns: 1fr 120px 150px 120px 180px;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    min-width: auto;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .coin_header_name {
+    font-size: 1.25rem;
+    margin-left: 2rem;
+  }
+  
+  .coin_header_price,
+  .coin_header_volume,
+  .coin_header_percent,
+  .coin_header_marketcap {
+    font-size: 1.125rem;
+  }
 }
