@@ -2,7 +2,7 @@
 
 A modern, responsive cryptocurrency tracking application built with Next.js that provides real-time market data, portfolio management, and advanced filtering capabilities.
 
-![Crypto Tracker Preview](./public/preview.png) <!-- Add a screenshot -->
+![Crypto Finance Tracker](https://crypto-finance-tracker-bice.vercel.app/)
 
 ## ✨ Features
 
@@ -104,8 +104,6 @@ nextjs-crypto-api/
 - Breakpoints: 480px, 640px, 768px, 1024px, 1400px+
 - Horizontal scrolling tables on small screens
 - Optimized touch interactions
-
-## 🔧 Customization
 
 ### API Configuration
 The app uses CoinGecko's free API. No API key required for basic usage.
